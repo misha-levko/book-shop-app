@@ -1,14 +1,15 @@
 package mate.academy.bookshopapp.dto;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
 public class BookDto {
+    private Long id;
     @NotBlank
     private String title;
     @NotBlank
@@ -16,7 +17,7 @@ public class BookDto {
     @NotBlank
     private String isbn;
     @NotNull
-    @Min(0)
+    @Positive(message = "Price must be a positive value")
     private BigDecimal price;
     private String description;
     private String coverImage;
