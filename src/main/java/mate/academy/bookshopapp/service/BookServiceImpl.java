@@ -1,5 +1,6 @@
 package mate.academy.bookshopapp.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookshopapp.dto.BookDto;
 import mate.academy.bookshopapp.dto.CreateBookRequestDto;
@@ -8,8 +9,6 @@ import mate.academy.bookshopapp.mapper.BookMapper;
 import mate.academy.bookshopapp.model.Book;
 import mate.academy.bookshopapp.repository.BookRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service

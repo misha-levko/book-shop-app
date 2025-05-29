@@ -1,5 +1,6 @@
 package mate.academy.bookshopapp.controller;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookshopapp.dto.BookDto;
 import mate.academy.bookshopapp.dto.CreateBookRequestDto;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
