@@ -9,18 +9,14 @@ import lombok.Data;
 @Data
 public class CreateBookRequestDto {
     @NotBlank
-    @NotNull
     private String title;
     @NotBlank
-    @NotNull
     private String author;
-    @NotNull
+    @NotBlank
     private String isbn;
     @NotNull
     @Positive
     private BigDecimal price;
-    @NotNull
     private String description;
-    @NotNull
     private String coverImage;
 }
