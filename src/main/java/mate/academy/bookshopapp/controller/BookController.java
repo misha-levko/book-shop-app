@@ -38,14 +38,14 @@ public class BookController {
         return bookService.updateBookById(id, bookDto);
     }
 
-    @PostMapping
-    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
-        return bookService.createBook(bookDto);
-    }
-
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         bookService.deleteById(id);
+    }
+
+    @PostMapping
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
+        return bookService.createBook(bookDto);
     }
 }
