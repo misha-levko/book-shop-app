@@ -45,6 +45,7 @@ public class BookController {
         bookService.deleteById(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.createBook(bookDto);
