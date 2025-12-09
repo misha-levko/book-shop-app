@@ -1,5 +1,7 @@
 package mate.academy.bookshopapp.controller;
 
+import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookshopapp.dto.BookDto;
 import mate.academy.bookshopapp.dto.CreateBookRequestDto;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,18 +34,20 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public BookDto updateBookById(@PathVariable Long id, @RequestBody BookDto bookDto) {
-        return bookService.updateBookById(id, bookDto);
-    }
-
-    @PostMapping
-    public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
-        return bookService.createBook(bookDto);
+    public BookDto updateBookById(@PathVariable Long id,
+                                  @RequestBody @Valid CreateBookRequestDto bookRequestDto) {
+        return bookService.updateBookById(id, bookRequestDto);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         bookService.deleteById(id);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
+        return bookService.createBook(bookDto);
     }
 }

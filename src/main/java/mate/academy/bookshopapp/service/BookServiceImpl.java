@@ -1,5 +1,6 @@
 package mate.academy.bookshopapp.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookshopapp.dto.BookDto;
 import mate.academy.bookshopapp.dto.CreateBookRequestDto;
@@ -8,8 +9,6 @@ import mate.academy.bookshopapp.mapper.BookMapper;
 import mate.academy.bookshopapp.model.Book;
 import mate.academy.bookshopapp.repository.BookRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -44,17 +43,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDto updateBookById(Long id, BookDto bookDto) {
+    public BookDto updateBookById(Long id, CreateBookRequestDto bookRequestDto) {
         Book bookUpdate = bookRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't update book by id " + id)
         );
-        bookUpdate.setTitle(bookDto.getTitle());
-        bookUpdate.setAuthor(bookDto.getAuthor());
-        bookUpdate.setPrice(bookDto.getPrice());
-        bookUpdate.setIsbn(bookDto.getIsbn());
-        bookUpdate.setDescription(bookDto.getDescription());
-        bookUpdate.setCoverImage(bookDto.getCoverImage());
-
-        return bookMapper.toDto(bookRepository.save(bookUpdate));
+        bookMapper.updateBookFromDto(bookRequestDto, bookUpdate);
+        Book updatedBook = bookRepository.save(bookUpdate);
+        return bookMapper.toDto(updatedBook);
     }
 }

@@ -1,9 +1,8 @@
 package mate.academy.bookshopapp.service;
 
+import java.util.List;
 import mate.academy.bookshopapp.dto.BookDto;
 import mate.academy.bookshopapp.dto.CreateBookRequestDto;
-
-import java.util.List;
 
 public interface BookService {
     BookDto createBook(CreateBookRequestDto bookDto);
@@ -14,5 +13,5 @@ public interface BookService {
 
     void deleteById(Long id);
 
-    BookDto updateBookById(Long id, BookDto bookDto);
+    BookDto updateBookById(Long id, CreateBookRequestDto bookRequestDto);
 }
