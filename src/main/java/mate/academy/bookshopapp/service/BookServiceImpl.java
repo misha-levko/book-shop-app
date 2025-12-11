@@ -1,6 +1,5 @@
 package mate.academy.bookshopapp.service;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookshopapp.dto.BookDto;
 import mate.academy.bookshopapp.dto.CreateBookRequestDto;
@@ -8,6 +7,8 @@ import mate.academy.bookshopapp.exception.EntityNotFoundException;
 import mate.academy.bookshopapp.mapper.BookMapper;
 import mate.academy.bookshopapp.model.Book;
 import mate.academy.bookshopapp.repository.BookRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -23,10 +24,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> getAll() {
-        return bookRepository.findAll().stream()
-                .map(bookMapper::toDto)
-                .toList();
+    public Page<BookDto> getAll(Pageable pageable) {
+        return bookRepository.findAll(pageable).map(bookMapper::toDto);
     }
 
     @Override
